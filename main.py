@@ -62,7 +62,7 @@ def getGeminiResponse(title, body, max_retries=3, retry_delay=5, success_delay=3
 
     model = "gemini-2.0-flash-lite"
 
-    system_prompt = open("prompt.md", "r", encoding="utf-8").read()
+    system_prompt = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "prompt.md"), "r", encoding="utf-8").read()
     user_prompt = f"""
     뉴스 제목: {title}
     뉴스 본문: {body}
