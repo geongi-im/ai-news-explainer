@@ -281,7 +281,7 @@ if __name__ == "__main__":
                 content=html_response,
                 category="어린이뉴스",
                 writer="admin",
-                image_paths=['img/main.png']
+                image_paths=[os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img', 'main.png')]
             )
             logger.info("API 포스트 생성 완료")
         except ApiError as e:
