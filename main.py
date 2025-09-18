@@ -60,7 +60,7 @@ def getGeminiResponse(title, body, max_retries=3, retry_delay=5, success_delay=3
         api_key=os.environ.get("GOOGLE_API_KEY"),
     )
 
-    model = "gemini-2.0-flash-lite"
+    model = "gemini-2.5-flash-lite"
 
     system_prompt = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "prompt.md"), "r", encoding="utf-8").read()
     user_prompt = f"""
@@ -281,7 +281,8 @@ if __name__ == "__main__":
                 content=html_response,
                 category="어린이뉴스",
                 writer="admin",
-                image_paths=[os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img', 'main.png')]
+                image_paths=[],
+                thumbnail_image_path=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img', 'main.png')
             )
             logger.info("API 포스트 생성 완료")
         except ApiError as e:
