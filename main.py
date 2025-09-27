@@ -60,7 +60,7 @@ def getGeminiResponse(title, body, max_retries=3, retry_delay=5, success_delay=3
         api_key=os.environ.get("GOOGLE_API_KEY"),
     )
 
-    model = "gemini-2.5-flash-lite"
+    model = "gemini-2.0-flash-lite"
 
     system_prompt = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "prompt.md"), "r", encoding="utf-8").read()
     user_prompt = f"""
