@@ -73,6 +73,7 @@ PRESS_CODE=014
 
 # Google Gemini API
 GOOGLE_API_KEY=your_google_api_key
+GEMINI_MODEL=gemini-2.0-flash-lite
 
 # 텔레그램 봇 설정
 TELEGRAM_BOT_TOKEN=your_telegram_bot_token
