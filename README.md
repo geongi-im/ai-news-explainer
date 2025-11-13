@@ -80,6 +80,9 @@ TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
 TELEGRAM_CHAT_TEST_ID=your_test_chat_id
 
+# BASE URL
+BASE_URL=http://example.com
+
 ```
 
 ### 4. 실행

@@ -4,6 +4,9 @@ import os
 from PIL import Image
 import io
 from utils.logger_util import LoggerUtil
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class ApiError(Exception):
     """API 호출 관련 커스텀 예외"""
@@ -14,7 +17,12 @@ class ApiError(Exception):
 
 class ApiUtil:
     def __init__(self):
-        self.base_url = "http://localhost/api"
+        base_url = os.getenv("BASE_URL")
+        if not base_url:
+            raise EnvironmentError("환경 변수 'BASE_URL'가 설정되어 있지 않습니다.")
+
+        base_url = base_url.rstrip("/")
+        self.api_base_url = f"{base_url}/api"
         self.headers = {
             "Accept": "application/json"
         }
@@ -59,7 +67,7 @@ class ApiUtil:
 
     def create_post(self, title: str, content: str, category: str, writer: str, image_paths: Optional[List[str]] = None, thumbnail_image_path: str = None):
         """게시글 생성 API 호출 (이미지/썸네일 유무와 관계없이 단일 흐름)"""
-        url = f"{self.base_url}/board-content"
+        url = f"{self.api_base_url}/board-content"
 
         try:
             data = {
