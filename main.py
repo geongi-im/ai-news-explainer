@@ -238,14 +238,35 @@ def convertToHtml(response, article_url):
 
 if __name__ == "__main__":
     logger = LoggerUtil().get_logger()
+
+    # 환경변수 로드
+    load_dotenv()
+
+    # 필수 환경변수 체크
+    required_env_vars = [
+        "PRESS_CODE",
+        "GOOGLE_API_KEY",
+        "GEMINI_MODEL",
+        "BASE_URL",
+        "ACCESS_TOKEN",
+        "TELEGRAM_BOT_TOKEN",
+        "TELEGRAM_CHAT_ID"
+    ]
+
+    missing_vars = []
+    for var in required_env_vars:
+        if not os.getenv(var):
+            missing_vars.append(var)
+
+    if missing_vars:
+        error_message = f"🛑 필수 환경변수가 설정되지 않았습니다: {', '.join(missing_vars)}"
+        logger.error(error_message)
+        raise ValueError(error_message)
+
+    # 환경변수 체크 완료 후 유틸리티 초기화
     api_util = ApiUtil()
     telegram = TelegramUtil()
-
-    load_dotenv()
     press_code = os.getenv("PRESS_CODE")
-    if not press_code:
-        logger.error("PRESS_CODE is not defined in .env")
-        raise ValueError("PRESS_CODE is not defined in .env")
 
     # 2. 날짜 및 헤더 설정
     today = datetime.today().strftime("%Y-%m-%d")
@@ -286,7 +307,7 @@ if __name__ == "__main__":
             )
             logger.info("API 포스트 생성 완료")
         except ApiError as e:
-            error_message = f"❌ API 오류 발생\n\n{e.message}"
+            error_message = f"❌ [ai-news-explainer] API 오류 발생\n\n{e.message}"
             telegram.send_test_message(error_message)
             logger.error(f"API 포스트 생성 오류: {e.message}")
 
