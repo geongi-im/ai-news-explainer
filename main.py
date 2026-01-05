@@ -248,9 +248,9 @@ if __name__ == "__main__":
         "GOOGLE_API_KEY",
         "GEMINI_MODEL",
         "BASE_URL",
-        "ACCESS_TOKEN",
-        "TELEGRAM_BOT_TOKEN",
-        "TELEGRAM_CHAT_ID"
+        "TELEGRAM_CHAT_TEST_ID",
+        "TELEGRAM_CHAT_ID",
+        "TELEGRAM_BOT_TOKEN"
     ]
 
     missing_vars = []
